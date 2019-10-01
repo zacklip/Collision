@@ -1,0 +1,19 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class playerCollider : MonoBehaviour
+{
+    public GameObject hitEffect;
+    public gameManager1 gameManager;
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+       GameObject effect =  Instantiate(hitEffect, transform.position, Quaternion.identity);
+        Destroy(effect, 1f);
+        Destroy(gameObject);
+
+        FindObjectOfType<gameManager1>().endGame(); 
+        FindObjectOfType<audioManager>().Play("playerDeath"); //AUdio Trigger
+    }
+}
